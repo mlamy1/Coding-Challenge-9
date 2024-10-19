@@ -69,3 +69,19 @@ class Patron { // Define Patron class
         }
     }
 }
+//Task 4: Create a VIPPatron Class that Inherits from Patron
+
+class VIPPatron extends Patron { // Define VIPPatron class that extents Patron class
+    constructor(name, priority) {
+        super(name);
+        this.priority = priority;
+    }
+    
+    borrowBook(book) { // Used to prioritize borrowing in case of competition with regular patrons
+        if(this.priority) {
+            console.log(`${this.name} (VIP) has priority to borrow "${book.title}"`); // Message will appear 
+        }
+        super.borrowBook(book); // Used to call the bowworBook method from the Patron class
+    }
+}
+
