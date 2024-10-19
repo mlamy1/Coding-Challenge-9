@@ -55,7 +55,7 @@ class Patron { // Define Patron class
             this.borrowedBooks.push(book);
             console.log(`${this.name} borrowed "${book.title}"`); //Message will display
         } else {
-            console.log(`Sorry, "${book.title}" is currently not available.`); //Message will display if otherwise
+            console.log(` "${book.title}" is currently not available.`); //Message will display if otherwise
         }
     }
     returnBook(book) { // Used to allow the patron to return a borrowed book, making it available again.
@@ -84,4 +84,40 @@ class VIPPatron extends Patron { // Define VIPPatron class that extents Patron c
         super.borrowBook(book); // Used to call the bowworBook method from the Patron class
     }
 }
+
+//Task 6: Create and Manage Sections and Patrons
+
+//Sample Data
+const fiction = new Section("Fiction"); // Sections
+const science = new Section("Science");
+
+//Sample Books
+const book1 = new Book("The Truth", "Richard Floyd", "7395629385");
+const book2 = new Book( "Cameron's World", "Cameron Johnson", "0294756389");
+const book3 = new Book("The Life of Myia", "Myia Lamy", "0835278941");
+
+//Used to add books to sections
+fiction.addBook(book1);
+fiction.addBook(book2);
+science.addBook(book3);
+
+//Sample Patrons
+const regularPatron2 = new Patron ("Kori Johnson"); 
+const vipPatron2 = new VIPPatron("True Williams", true);
+
+//Regular patron tries to borrow a book
+regularPatron2.borrowBook(book1);
+
+//VIP Patron tries to borrow a book
+vipPatron2.borrowBook(book1);
+
+//Book Return
+regularPatron2.returnBook(book1);
+
+//Used to specify books availability 
+console.log(fiction.listBooks());
+
+//Used to calculate and display total available books in each section 
+console.log(`Total available books in fiction: ${fiction.calculateTotalBooksAvailable()}`);
+console.log(`Total available books in Science: ${science.calculateTotalBooksAvailable()}`);
 
