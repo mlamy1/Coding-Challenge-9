@@ -40,3 +40,32 @@ class Section { // Define Section class
         return this.books.reduce((total, book) => total + (book.isAvailable ? 1 : 0), 0);
     }
 }
+
+//Task 3: Create a Patron Class 
+
+class Patron { // Define Patron class
+    constructor(name) {
+        this.name = name;
+        this.borrowedBooks = [];
+    }
+
+    borrowBook(book) { // Used to allow the patron to borrow a book if it is available and updates the book’s status
+        if (book.isAvailable) { 
+            book.isAvailable = false; // Used if else function to display message if book is not avaialbe
+            this.borrowedBooks.push(book);
+            console.log(`${this.name} borrowed "${book.title}"`); //Message will display
+        } else {
+            console.log(`Sorry, "${book.title}" is currently not available.`); //Message will display if otherwise
+        }
+    }
+    returnBook(book) { // Used to allow the patron to return a borrowed book, making it available again.
+        const index = this.borrowedBooks.indexOf(book);
+        if(index !== -1) {
+            book.isAvailable = true; 
+            this.borrowedBooks.splice(index,1);
+            console.log(`${this.name} returned "${book.title}"`); //Message will display if available
+        } else {
+            console.log(`${this.name} does not have "${book.title}" borrowed.`); //Message will display if otherwise 
+        }
+    }
+}
